@@ -34,6 +34,7 @@ from opensandbox_server.api.schema import (
     RenewSandboxExpirationResponse,
     Sandbox,
 )
+from opensandbox_server.services.constants import SandboxErrorCodes
 from opensandbox_server.services.diagnostics import DiagnosticContext, DiagnosticResult
 from opensandbox_server.services.validators import ensure_valid_port
 
@@ -220,7 +221,7 @@ class SandboxService(ABC):
                 raise HTTPException(
                     status_code=400,
                     detail={
-                        "code": "INVALID_METADATA_LABEL",
+                        "code": SandboxErrorCodes.INVALID_METADATA_LABEL,
                         "message": f"Metadata key '{key}' is reserved (opensandbox.io/ prefix).",
                     },
                 )
